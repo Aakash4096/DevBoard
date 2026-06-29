@@ -1,6 +1,7 @@
 const config = require("./config");
 const { connectDB } = require("./config/database");
 const errorHandler = require("./middleware/errorHandler");
+const authRoutes = require("./routes/authRoutes");
 const ApiError = require("./utils/ApiError");
 
 const express = require("express");
@@ -16,11 +17,11 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-// Health check
+//route
 app.get("/api/health", (req, res) => {
-  // TODO: Use ApiResponse instead
   res.status(200).json({ success: true, message: "Server is running" });
 });
+app.use("/api/auth", authRoutes);
 
 //  404 handler — for any route not matched above
 app.use((req, res, next) => {
