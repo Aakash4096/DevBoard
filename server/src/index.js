@@ -3,6 +3,7 @@ const { connectDB } = require("./config/database");
 const errorHandler = require("./middleware/errorHandler");
 const authRoutes = require("./routes/authRoutes");
 const ApiError = require("./utils/ApiError");
+const protect = require("./middleware/auth");
 
 const express = require("express");
 const helmet = require("helmet");
@@ -20,6 +21,10 @@ app.use(express.json());
 //route
 app.get("/api/health", (req, res) => {
   res.status(200).json({ success: true, message: "Server is running" });
+});
+
+app.get("/api/me", protect, (req, res) => {
+  res.json({ user: req.user });
 });
 app.use("/api/auth", authRoutes);
 
