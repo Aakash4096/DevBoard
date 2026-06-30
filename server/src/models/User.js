@@ -35,6 +35,7 @@ userSchema.pre("save", async function (next) {
   }
   const salt = await bcrypt.genSalt(12);
   this.password = await bcrypt.hash(this.password, salt);
+  //here ommitted next like mongoose 6.0+ doesn't require it , otherwise race condition
 });
 
 // Compare password
