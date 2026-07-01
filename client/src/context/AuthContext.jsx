@@ -7,6 +7,17 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
+  useEffect(() => {
+    if (token) {
+      API.get("/me")
+        .then(({ data }) => setUser(data.user))
+        .catch(() => {
+          localStorage.removeItem("token");
+          setToken(null);
+        });
+    }
+  }, [token]);
+
   const login = async (email, password) => {
     const { data } = await API.post("/auth/login", { email, password });
     localStorage.setItem("token", data.token);
