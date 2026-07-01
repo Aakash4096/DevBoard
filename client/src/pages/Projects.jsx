@@ -25,7 +25,7 @@ const Projects = () => {
   };
 
   return (
-    <div>
+    <div className="list-page">
       <h2>Projects</h2>
       <form onSubmit={createProject}>
         <input
@@ -36,19 +36,17 @@ const Projects = () => {
         />
         <button type="submit">Create</button>
       </form>
-      <ul>
-        {projects.map((p) => (
-          <li
-            key={p._id}
-            onClick={() =>
-              navigate(`/organizations/${orgId}/projects/${p._id}/tasks`)
-            }
-            style={{ cursor: "pointer" }}
-          >
-            {p.name}
-          </li>
-        ))}
-      </ul>
+      {projects.map((p) => (
+        <div
+          key={p._id}
+          className="list-item"
+          onClick={() =>
+            navigate(`/organizations/${orgId}/projects/${p._id}/tasks`)
+          }
+        >
+          {p.name}
+        </div>
+      ))}
     </div>
   );
 };

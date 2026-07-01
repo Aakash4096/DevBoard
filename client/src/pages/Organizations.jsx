@@ -24,28 +24,26 @@ const Organizations = () => {
   };
 
   return (
-    <div>
+    <div className="list-page">
       <h2>Organizations</h2>
       <form onSubmit={createOrg}>
         <input
-          placeholder="Org name"
+          placeholder="Organization name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <button type="submit">Create</button>
       </form>
-      <ul>
-        {orgs.map((org) => (
-          <li
-            key={org._id}
-            onClick={() => navigate(`/organizations/${org._id}/projects`)}
-            style={{ cursor: "pointer" }}
-          >
-            {org.name}
-          </li>
-        ))}
-      </ul>
+      {orgs.map((org) => (
+        <div
+          key={org._id}
+          className="list-item"
+          onClick={() => navigate(`/organizations/${org._id}/projects`)}
+        >
+          {org.name}
+        </div>
+      ))}
     </div>
   );
 };

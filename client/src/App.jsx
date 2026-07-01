@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Organizations from "./pages/Organizations";
 import Projects from "./pages/Projects";
 import Tasks from "./pages/Tasks";
+import TaskDetail from "./pages/TaskDetail";
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
             }
           />
           <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route
+            path="/organizations/:orgId/projects/:projectId/tasks/:taskId"
+            element={
+              <ProtectedRoute>
+                <TaskDetail />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

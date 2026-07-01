@@ -6,13 +6,15 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <p>Welcome, {user?.name || "User"}</p>
+    <div className="dashboard">
+      <h2>Welcome, {user?.name || "User"}</h2>
+      <p>Manage your projects and tasks efficiently</p>
       <button onClick={() => navigate("/organizations")}>
         My Organizations
       </button>
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout} style={{ background: "#e77f89" }}>
+        Logout
+      </button>
     </div>
   );
 };
