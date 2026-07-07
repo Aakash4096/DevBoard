@@ -42,7 +42,9 @@ app.use("/api/projects/:projectId/tasks", taskRoutes);
 app.use("/api/tasks/:taskId/comments", commentTaskRoutes);
 app.use("/api/tasks/:taskId/activity", activityTaskRoutes);
 app.use("/api/tasks", taskDetailRoutes);
-
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "DevBoard API is running" });
+});
 // 404 handler
 app.use((req, res, next) => {
   next(new ApiError(404, `Route ${req.originalUrl} not found`));
